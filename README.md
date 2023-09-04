@@ -11,6 +11,10 @@ I learned that while REST Api is a little bit easier in setup GraphQL can actual
 
 ## Installation
 
+First download the repo from
+
+    https://github.com/shadowfre4k/googleBookSearchRefactor
+
 Enter the root folder and enter the following Command
 
     Npm Install
