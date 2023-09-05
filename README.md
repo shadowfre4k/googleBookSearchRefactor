@@ -23,6 +23,10 @@ After installed you can run the application locally using the following command
 
     npm run develop
 
+you may also visit the deployed site
+
+    https://arcane-mountain-29300-16077cb923ea.herokuapp.com/
+
 ## Usage
 
 This is the homepage after you log in, you can search for any book you would like using the search bar
