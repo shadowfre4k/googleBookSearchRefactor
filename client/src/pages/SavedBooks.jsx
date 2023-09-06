@@ -7,9 +7,9 @@ import { removeBookId } from "../utils/localStorage";
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(QUERY_ME);
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeBook] = useMutation(REMOVE_BOOK);
 
-  const userData = data?.me.savedBooks || {};
+  const userData = data?.me || {};
 
   // create function that accepts the book"s mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -23,6 +23,7 @@ const SavedBooks = () => {
       const { data } = await removeBook({
         variables: { bookId },
       });
+      console.log(data);
       // upon success, remove book"s id from localStorage
       removeBookId(bookId);
     } catch (err) {
@@ -31,27 +32,27 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!loading) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
   return (
     <>
-      <div fluid className="text-light bg-dark p-5">
+      <div className="text-light bg-dark p-5">
         <Container>
           <h1>Viewing saved books!</h1>
         </Container>
       </div>
       <Container>
         <h2 className="pt-5">
-          {userData.savedBooks.length
+          {userData?.savedBooks?.length
             ? `Viewing ${userData.savedBooks.length} saved ${
                 userData.savedBooks.length === 1 ? "book" : "books"
               }:`
             : "You have no saved books!"}
         </h2>
         <Row>
-          {userData.savedBooks.map((book) => {
+          {userData?.savedBooks?.map((book) => {
             return (
               <Col key={book.bookId} md="4">
                 <Card border="dark">

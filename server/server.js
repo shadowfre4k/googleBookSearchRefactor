@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleware,
 });
 
 // if we're in production, serve client/build as static assets
@@ -22,12 +23,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   app.use(express.json());
 
   server.applyMiddleware({ app });
-  app.use(
-    "/graphql",
-    expressMiddleware(server, {
-      context: authMiddleware,
-    })
-  );
+  app.use("/graphql", expressMiddleware(server, {}));
 
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/dist")));
