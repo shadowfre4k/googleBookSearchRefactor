@@ -23,7 +23,7 @@ After installed you can run the application locally using the following command
 
     npm run develop
 
-you may also visit the deployed site
+you may also visit the deployed site here
 
     https://arcane-mountain-29300-16077cb923ea.herokuapp.com/
 
